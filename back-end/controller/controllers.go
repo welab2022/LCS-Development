@@ -37,7 +37,7 @@ func CheckPassword(context *gin.Context) {
 	// }
 	emailLogin := users["email"]
 	passwordLogin := users["password"]
-	db, err := sql.Open("mysql", "lcsdbuser:password123@tcp(159.65.122.1:3306)/lcsdb")
+	db, err := sql.Open("mysql", "lcsuser:password123@tcp(159.65.122.1:3306)/lcsdb")
 	//db, err := sql.Open("mysql", "root123:root123@tcp(127.0.0.1:3306)/lcsdb")
 
 	if err != nil {
