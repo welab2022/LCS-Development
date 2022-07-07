@@ -8,7 +8,10 @@ const MainPage = ({children}) => {
       <Menu></Menu>
       <div id='main' className='main'>
         <Navbar/>
-        {children}
+        <div className="p-5">
+          {children}
+        </div>
+        
       </div>
       
     </div>
