@@ -2,6 +2,7 @@ import React from 'react'
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
+import { forgotPassword } from '../../api/resetPassword';
 
 const schema = yup.object({
   email: yup.string().email('Must be a valid email').max(255).required('Email is required'),
@@ -11,7 +12,9 @@ const ForgotPassword = () => {
   const { register, handleSubmit, formState:{ errors } } = useForm({
     resolver: yupResolver(schema)
   });
-  const onSubmit = data => console.log(data);
+  const onSubmit = data => {{
+    forgotPassword(data)
+  }}
   return (
     <div className="container-sm  shadow p-5 " >
         <h2>LCS</h2>

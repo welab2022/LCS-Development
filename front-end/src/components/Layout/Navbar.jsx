@@ -8,6 +8,7 @@ const Navbar = () => {
   // const currentUser = useSelector(state=>state.auth.currentUser);
     let navigate = useNavigate();
     const username = localStorage.getItem("username");
+    const email = localStorage.getItem("username");
     const handleToggle =()=>{
         document.getElementById('toggle').classList.toggle('show')
     }
@@ -53,10 +54,13 @@ const Navbar = () => {
                     <div className="navbar-nav me-3 mb-2 mb-lg-0 mr-lg-3">
                         
                     </div>
-                    <div className="position-relative" >
+                    <div className="position-relative" style={{cursor: 'pointer'}} >
                       <div onClick={togleMyaccount} className="navbar-nav d-flex flex-row" id="account">
                             <img className="rounded-circle" src="https://avatars.githubusercontent.com/u/84139131?v=4" alt="" height="40px" width="40px"/>
-                            <span className="my-auto ms-3 ">{username?username:'lcs@gmail.com'}</span>                        
+                            <div  >
+                            <p className="my-auto ms-3 "  style={{fontWeight: "bold"}}>{username?username:'Learning Center System'}</p>
+                            <p className="my-auto ms-3 ">{email?email:'lcs@gmail.com'}</p>
+                            </div>                       
                       </div>
                       <div id="account-menu" className="list-group list-group-flush my-account-dropdown">
                       <Link style={{ textDecoration: 'none' }} to="/myaccount"><span className="list-group-item p-3 my-account-dropdown-item">My account</span></Link>
