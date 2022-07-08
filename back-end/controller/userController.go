@@ -44,6 +44,33 @@ func ReadUser(context *gin.Context){
 	}
 	defer db.Close()
 	fmt.Println(context.Param("email"))
+	checkEmail,err := db.Query("SELECT count(name)  FROM user WHERE email = ?", context.Param("email"))
+	if err != nil {
+		context.JSON(http.StatusBadRequest,gin.H{
+			//QUERY FAILED
+			"message":"Database Failed",
+		})
+		panic(err.Error())
+	}
+	fmt.Println(checkEmail)
+	for checkEmail.Next() {
+		var number Number
+		err := checkEmail.Scan(&number.Number)
+		if err != nil {
+			context.JSON(http.StatusNotFound,gin.H{
+				// EMAIL URL NOT EXIST
+				"message":"Email not exist",
+			})
+		}
+		amount := number.Number
+		fmt.Println(amount)
+		if amount == 0 {
+			context.JSON(http.StatusNotFound,gin.H{
+				// EMAIL URL NOT EXIST
+				"message":"Email not exist",
+			})
+		}else{
+		
 	dataUser,err := db.Query("SELECT email,name FROM User where email = ? ", context.Param("email"))
 	// + context.Param("email")
 	if err != nil {
@@ -64,7 +91,8 @@ func ReadUser(context *gin.Context){
 		"name": userName,
 		"email": userEmail,
 	
-	})
+	})}
+}
 }
 func DeleteUser(context *gin.Context){
 	
@@ -73,19 +101,45 @@ func DeleteUser(context *gin.Context){
 		panic(err.Error())
 	}
 	defer db.Close()
-	fmt.Println(context.Param("email"))
-	dataUser,err := db.Prepare("DELETE FROM user WHERE email=? ")
+	checkEmail,err := db.Query("SELECT count(name)  FROM user WHERE email = ?", context.Param("email"))
 	if err != nil {
-		fmt.Println("false")
-		context.JSON(http.StatusOK,gin.H{
-			"message":"don't exist" + context.Param("email"),
+		context.JSON(http.StatusBadRequest,gin.H{
+			//QUERY FAILED
+			"message":"Database Failed",
 		})
 		panic(err.Error())
-	} 
-	dataUser.Exec(context.Param("email"))
-	context.JSON(http.StatusOK,gin.H{
-		"message":"DELETE SUCCESS",
-	})
+	}
+	fmt.Println(checkEmail)
+	for checkEmail.Next() {
+		var number Number
+		err := checkEmail.Scan(&number.Number)
+		if err != nil {
+			context.JSON(http.StatusNotFound,gin.H{
+				// EMAIL URL NOT EXIST
+				"message":"Email not exist",
+			})
+		}
+		amount := number.Number
+		fmt.Println(amount)
+		if amount == 0 {
+			context.JSON(http.StatusNotFound,gin.H{
+				// EMAIL URL NOT EXIST
+				"message":"Email not exist",
+			})
+		}else{
+		fmt.Println(context.Param("email"))
+		dataUser,err := db.Prepare("DELETE FROM user WHERE email=? ")
+		if err != nil {
+			fmt.Println("false")
+			context.JSON(http.StatusOK,gin.H{
+				"message":"don't exist" + context.Param("email"),
+			})
+			panic(err.Error())
+		} 
+		dataUser.Exec(context.Param("email"))
+		context.JSON(http.StatusOK,gin.H{
+			"message":"DELETE SUCCESS",
+		})}}
 
 }
 func CreateUser(context *gin.Context){
