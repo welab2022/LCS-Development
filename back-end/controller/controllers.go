@@ -71,7 +71,10 @@ func CheckPassword(context *gin.Context) {
 
 	if passwordUser == passwordLogin {
 		context.JSON(http.StatusOK, gin.H{
-			"name": usernameLogin})
+			"name": usernameLogin,
+			"email": emailLogin,
+		
+		})
 	} else {
 		context.JSON(http.StatusUnauthorized, gin.H{
 			"message":  "Failed",
