@@ -13,7 +13,12 @@ const ForgotPassword = () => {
     resolver: yupResolver(schema)
   });
   const onSubmit = data => {{
-    forgotPassword(data)
+    try{
+      forgotPassword(data)
+    }catch(err){
+      console.log('khogn thanh cong')
+    }
+    
   }}
   return (
     <div className="container-sm  shadow p-5 " >

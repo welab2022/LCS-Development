@@ -17,8 +17,12 @@ const ResetPassword = () => {
     resolver: yupResolver(schema)
   });
   const onSubmit = data => {
+    try{
+      resetPassword({params: params, password: data.password})
+    }catch(err){
+        console.log("khong thanh cong")
+    }
     
-    resetPassword({params: params, password: data.password})
   }
   return (
     <div className="container-sm  shadow p-5 "  >
