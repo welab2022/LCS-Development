@@ -6,7 +6,7 @@ const forgotPassword=(data)=>{
 }
 
 const resetPassword=(data)=>{
-    const url ='/'+ data.params;
+    const url ='resetpassword/'+ data.params;
     return axiosClient.post(url,data.password);
 }
 

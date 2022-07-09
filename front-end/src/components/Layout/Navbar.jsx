@@ -1,14 +1,10 @@
 import React from 'react'
-import { useState } from 'react'
 import {  useSelector  } from 'react-redux';
 import { Link } from "react-router-dom";
-import { useNavigate  } from 'react-router-dom';
 const Navbar = () => {
     
-  // const currentUser = useSelector(state=>state.auth.currentUser);
-    let navigate = useNavigate();
-    const username = localStorage.getItem("username");
-    const email = localStorage.getItem("username");
+    const currentUser = useSelector(state=>state.auth.currentUser);
+  
     const handleToggle =()=>{
         document.getElementById('toggle').classList.toggle('show')
     }
@@ -22,7 +18,7 @@ const Navbar = () => {
     }
     const handleLogout = ()=>{
       localStorage.clear();
-      return navigate("/login");
+      window.location.replace("/login");
     }
   return (
     <nav className="navbar navbar-expand-sm bg-light">
@@ -58,8 +54,8 @@ const Navbar = () => {
                       <div onClick={togleMyaccount} className="navbar-nav d-flex flex-row" id="account">
                             <img className="rounded-circle" src="https://avatars.githubusercontent.com/u/84139131?v=4" alt="" height="40px" width="40px"/>
                             <div  >
-                            <p className="my-auto ms-3 "  style={{fontWeight: "bold"}}>{username?username:'Learning Center System'}</p>
-                            <p className="my-auto ms-3 ">{email?email:'lcs@gmail.com'}</p>
+                            <p className="my-auto ms-3 "  style={{fontWeight: "bold"}}>{currentUser?currentUser.name:'Learning Center System'}</p>
+                            <p className="my-auto ms-3 ">{currentUser?currentUser.email:'lcs@gmail.com'}</p>
                             </div>                       
                       </div>
                       <div id="account-menu" className="list-group list-group-flush my-account-dropdown">

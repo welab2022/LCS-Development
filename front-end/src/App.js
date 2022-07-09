@@ -8,7 +8,7 @@ import Users from './components/users/Users';
 import ResetPassword from './components/pages/ResetPassword';
 import ForgotPassword from './components/pages/ForgotPassword';
 import Register from './components/pages/Register';
-import MyAccount from './components/pages/MyAccount';
+import MyAccount from './components/myAccount/MyAccount';
 function App() {
   
   return (
