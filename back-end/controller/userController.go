@@ -10,31 +10,31 @@ import (
 
 	"github.com/gin-gonic/gin"
 	_ "github.com/go-sql-driver/mysql"
-	// userModel "lcs_backend/model"
+	UserModel "lcs_backend/model"
 )
-type Password struct {
-	Password string 
-}
-type UserUpdatePassword struct {
-	CurrentPassword string
-	NewPassword string
-}
-type Number struct {
-	Number int
-}
-type UserRead struct {
-	name string `json:"name"`
-	email	 string  `json:"email"`
-}
-type UserCreate struct {
-	Email	 string  
-	Name 	 string  
-	Password string  
-}
-type UserUpdate struct {
-	Name string
+// type Password struct {
+// 	Password string 
+// }
+// type UserUpdatePassword struct {
+// 	CurrentPassword string
+// 	NewPassword string
+// }
+// type Number struct {
+// 	Number int
+// }
+// type UserRead struct {
+// 	name string `json:"name"`
+// 	email	 string  `json:"email"`
+// }
+// type UserCreate struct {
+// 	Email	 string  
+// 	Name 	 string  
+// 	Password string  
+// }
+// type UserUpdate struct {
+// 	Name string
 
-}
+// }
 func ReadUser(context *gin.Context){
 	var userName string
 	var userEmail string
@@ -54,7 +54,7 @@ func ReadUser(context *gin.Context){
 	}
 	fmt.Println(checkEmail)
 	for checkEmail.Next() {
-		var number Number
+		var number UserModel.Number
 		err := checkEmail.Scan(&number.Number)
 		if err != nil {
 			context.JSON(http.StatusNotFound,gin.H{
@@ -81,10 +81,10 @@ func ReadUser(context *gin.Context){
 		panic(err.Error())
 	}
 	for dataUser.Next() {
-		var infoUser UserRead
-		err = dataUser.Scan(&infoUser.email, &infoUser.name)
-		userName = infoUser.name
-		userEmail = infoUser.email
+		var infoUser UserModel.UserRead
+		err = dataUser.Scan(&infoUser.Email, &infoUser.Name)
+		userName = infoUser.Name
+		userEmail = infoUser.Email
 	}
 	
 	context.JSON(http.StatusOK, gin.H{
@@ -111,7 +111,7 @@ func DeleteUser(context *gin.Context){
 	}
 	fmt.Println(checkEmail)
 	for checkEmail.Next() {
-		var number Number
+		var number UserModel.Number
 		err := checkEmail.Scan(&number.Number)
 		if err != nil {
 			context.JSON(http.StatusNotFound,gin.H{
@@ -143,7 +143,7 @@ func DeleteUser(context *gin.Context){
 
 }
 func CreateUser(context *gin.Context){
-	var dataJson UserCreate
+	var dataJson UserModel.UserCreate
 	err := context.BindJSON(&dataJson);if err != nil {
 		context.JSON(http.StatusBadRequest,gin.H{
 			"message":"create Failed",
@@ -185,7 +185,7 @@ func CreateUser(context *gin.Context){
 	// })
 }
 func UpdateUserName(context *gin.Context){
-	var dataUpdate UserUpdate
+	var dataUpdate UserModel.UserUpdate
 	err := context.BindJSON(&dataUpdate);if err != nil {
 		context.JSON(http.StatusBadRequest,gin.H{
 			//jSON RETURN NOT TRUE FORMAT
@@ -212,7 +212,7 @@ func UpdateUserName(context *gin.Context){
 	}
 	fmt.Println(checkEmail)
 	for checkEmail.Next() {
-		var number Number
+		var number UserModel.Number
 		err := checkEmail.Scan(&number.Number)
 		if err != nil {
 			context.JSON(http.StatusBadRequest,gin.H{
@@ -256,7 +256,7 @@ func UpdateUserName(context *gin.Context){
 }
 
 func UpdateUserPassword(context *gin.Context){
-	var dataUpdate UserUpdatePassword
+	var dataUpdate UserModel.UserUpdatePassword
 	err := context.BindJSON(&dataUpdate);if err != nil {
 		context.JSON(http.StatusBadRequest,gin.H{
 			//jSON RETURN NOT TRUE FORMAT
@@ -283,7 +283,7 @@ func UpdateUserPassword(context *gin.Context){
 	}
 	fmt.Println(checkEmail)
 	for checkEmail.Next() {
-		var number Number
+		var number UserModel.Number
 		err := checkEmail.Scan(&number.Number)
 		if err != nil {
 			context.JSON(http.StatusBadRequest,gin.H{
@@ -304,7 +304,7 @@ func UpdateUserPassword(context *gin.Context){
 				fmt.Println("false")
 				panic(err.Error())
 			}
-			var password Password
+			var password UserModel.Password
 			for results.Next() {
 				err = results.Scan(&password.Password)
 				if err != nil {
