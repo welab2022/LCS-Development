@@ -8,6 +8,7 @@ import Users from './components/users/Users';
 import ResetPassword from './components/pages/ResetPassword';
 import ForgotPassword from './components/pages/ForgotPassword';
 import Register from './components/pages/Register';
+import MyAccount from './components/myAccount/MyAccount';
 function App() {
   
   return (
@@ -15,20 +16,18 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/login' element={<LoginPage/>}/>
-        <Route path='/resetpassword' element={<ResetPassword/>}/>
+        <Route path='/resetpassword/:id' element={<ResetPassword/>}/>
         <Route path='/forgotpassword' element={<ForgotPassword/>}/>
         <Route path='/register' element={<Register/>}/>
             
        
-        <Route path='/' element={<PrivateRoute><Locations/></PrivateRoute>}>
+        <Route path='/' element={<PrivateRoute><Locations/></PrivateRoute>}/>
           
-        </Route>
-        <Route path='/locations' element={<PrivateRoute><Locations/></PrivateRoute>}>
+        <Route path='/locations' element={<PrivateRoute><Locations/></PrivateRoute>}/>
           
-        </Route>
-        <Route path='/users' element={<PrivateRoute><Users/></PrivateRoute>}>
+        <Route path='/users' element={<PrivateRoute><Users/></PrivateRoute>}/>
+        <Route path='/myaccount' element={<PrivateRoute><MyAccount/></PrivateRoute>}/>
           
-        </Route>
        
         <Route path='*' element={<NotFound/>}>
             

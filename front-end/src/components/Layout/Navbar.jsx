@@ -1,10 +1,10 @@
 import React from 'react'
-import { useState } from 'react'
 import {  useSelector  } from 'react-redux';
+import { Link } from "react-router-dom";
 const Navbar = () => {
     
-  // const currentUser = useSelector(state=>state.auth.currentUser);
-     const username = localStorage.getItem("username");
+    const currentUser = useSelector(state=>state.auth.currentUser);
+  
     const handleToggle =()=>{
         document.getElementById('toggle').classList.toggle('show')
     }
@@ -12,6 +12,9 @@ const Navbar = () => {
         document.getElementById('main').classList.toggle('active');
         document.getElementById('menu').classList.toggle('active');
       
+    }
+    const togleMyaccount = ()=>{
+      document.getElementById('account-menu').classList.toggle('active-display');
     }
     const handleLogout = ()=>{
       localStorage.clear();
@@ -47,11 +50,19 @@ const Navbar = () => {
                     <div className="navbar-nav me-3 mb-2 mb-lg-0 mr-lg-3">
                         
                     </div>
-                    <div className="navbar-nav d-flex flex-row" id="account">
-                          <img className="rounded-circle" src="https://avatars.githubusercontent.com/u/84139131?v=4" alt="" height="40px" width="40px"/>
-                          <span className="my-auto ms-3 ">{username?username:'lcs'}</span>
-                          <button className='logout btn btn-outline-success' onClick={handleLogout}>Logout</button>
+                    <div className="position-relative" style={{cursor: 'pointer'}} >
+                      <div onClick={togleMyaccount} className="navbar-nav d-flex flex-row" id="account">
+                            <img className="rounded-circle" src="https://avatars.githubusercontent.com/u/84139131?v=4" alt="" height="40px" width="40px"/>
+                            <div  >
+                            <p className="my-auto ms-3 "  style={{fontWeight: "bold"}}>{currentUser?currentUser.name:'Learning Center System'}</p>
+                            <p className="my-auto ms-3 ">{currentUser?currentUser.email:'lcs@gmail.com'}</p>
+                            </div>                       
                       </div>
+                      <div id="account-menu" className="list-group list-group-flush my-account-dropdown">
+                      <Link style={{ textDecoration: 'none' }} to="/myaccount"><span className="list-group-item p-3 my-account-dropdown-item">My account</span></Link>
+                        <span className="list-group-item p-3 my-account-dropdown-item" onClick={handleLogout}>Sign out</span>
+                      </div>
+                    </div>
                       
                     
                   </div>
