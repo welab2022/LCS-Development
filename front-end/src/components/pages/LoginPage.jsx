@@ -22,7 +22,8 @@ const LoginPage = () => {
   });
   useEffect(()=>{
     if(loginStatus == "succeeded"){
-      localStorage.setItem('username',currentUser.username)
+      localStorage.setItem('user',currentUser.name)
+      localStorage.setItem('email',currentUser.email)
       return navigate("/");
     }
     
