@@ -24,4 +24,8 @@ func User(router *gin.Engine){
 	router.PUT("/user/:email",controller.UpdateUserName)
 	router.PUT("/user/update/:email",controller.UpdateUserPassword)
 	router.POST("/user",controller.CreateUser)
+	router.POST("/location",controller.CreateLocation)
+	router.GET("location",controller.ReadAllLocation)
+	router.PUT("/location/edit/:locationid",controller.UpdateLocation)
+	router.DELETE("delete/:locationid",controller.DeleteLocation)
 }
