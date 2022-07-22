@@ -9,6 +9,10 @@ import ResetPassword from './components/pages/ResetPassword';
 import ForgotPassword from './components/pages/ForgotPassword';
 import Register from './components/pages/Register';
 import MyAccount from './components/myAccount/MyAccount';
+import Students from './components/students/Students';
+import StudentForm from './components/students/StudentForm';
+import Classes from './components/classes/Classes';
+import ClassForm from './components/classes/ClassForm';
 function App() {
   
   return (
@@ -26,6 +30,10 @@ function App() {
         <Route path='/locations' element={<PrivateRoute><Locations/></PrivateRoute>}/>
           
         <Route path='/users' element={<PrivateRoute><Users/></PrivateRoute>}/>
+        <Route path='/students' element={<PrivateRoute><Students/></PrivateRoute>}/>
+        <Route path='/students/:id' element={<PrivateRoute><StudentForm/></PrivateRoute>}/>
+        <Route path='/classes' element={<PrivateRoute><Classes/></PrivateRoute>}/>
+        <Route path='/classes/:id' element={<PrivateRoute><ClassForm/></PrivateRoute>}/>
         <Route path='/myaccount' element={<PrivateRoute><MyAccount/></PrivateRoute>}/>
           
        
