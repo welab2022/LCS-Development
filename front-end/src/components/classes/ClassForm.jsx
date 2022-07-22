@@ -19,14 +19,14 @@ const ClassForm = () => {
          
           setTimeout(() => {
             setStatus(0)
-          }, 1000);
+          }, 500);
           })
         .catch(e=>{
           setStatus(2);
          
           setTimeout(() => {
             setStatus(0)
-          }, 1000);
+          }, 500);
         }
 
         );
@@ -38,14 +38,14 @@ const ClassForm = () => {
          
           setTimeout(() => {
             setStatus(0)
-          }, 1000);
+          }, 500);
           })
         .catch(e=>{
           setStatus(2);
          
           setTimeout(() => {
             setStatus(0)
-          }, 1000);
+          }, 500);
         }
 
         );
