@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
     
     const currentUser = useSelector(state=>state.auth.currentUser);
-  
+    const nameLS = localStorage.getItem('name');
+  const emailLS = localStorage.getItem('email');
     const handleToggle =()=>{
         document.getElementById('toggle').classList.toggle('show')
     }
@@ -54,8 +55,8 @@ const Navbar = () => {
                       <div onClick={togleMyaccount} className="navbar-nav d-flex flex-row" id="account">
                             <img className="rounded-circle" src="https://avatars.githubusercontent.com/u/84139131?v=4" alt="" height="40px" width="40px"/>
                             <div  >
-                            <p className="my-auto ms-3 "  style={{fontWeight: "bold"}}>{currentUser?currentUser.name:'Learning Center System'}</p>
-                            <p className="my-auto ms-3 ">{currentUser?currentUser.email:'lcs@gmail.com'}</p>
+                            <p className="my-auto ms-3 "  style={{fontWeight: "bold"}}>{currentUser?currentUser.name:nameLS}</p>
+                            <p className="my-auto ms-3 ">{currentUser?currentUser.email:emailLS}</p>
                             </div>                       
                       </div>
                       <div id="account-menu" className="list-group list-group-flush my-account-dropdown">
