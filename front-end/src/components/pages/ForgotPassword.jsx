@@ -13,11 +13,11 @@ const ForgotPassword = () => {
     resolver: yupResolver(schema)
   });
   const onSubmit = data => {{
-    try{
-      forgotPassword(data)
-    }catch(err){
-      console.log('khogn thanh cong')
-    }
+      forgotPassword(data).then(resolve =>console.log("thanh cong"))
+      .catch(err =>{
+        console.log(err.response.status)
+      })
+    
     
   }}
   return (

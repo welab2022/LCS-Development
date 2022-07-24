@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import {  useSelector  } from 'react-redux';
 
 const MyAccount = () => {
+  const nameLS = localStorage.getItem('name');
+  const emailLS = localStorage.getItem('email');
   const [tab, setTab] = useState(true);
   const currentUser = useSelector(state=>state.auth.currentUser);
   const handleMenu = ()=>{
@@ -38,8 +40,8 @@ const MyAccount = () => {
                       <div onClick={togleMyaccount} className="navbar-nav d-flex flex-row" id="account">
                             <img className="rounded-circle" src="https://avatars.githubusercontent.com/u/84139131?v=4" alt="" height="40px" width="40px"/>
                             <div  >
-                            <p className="my-auto ms-3 "  style={{fontWeight: "bold"}}>{currentUser?currentUser.name:'Learning Center System'}</p>
-                            <p className="my-auto ms-3 ">{currentUser?currentUser.name:'lcs@gmail.com'}</p>
+                            <p className="my-auto ms-3 "  style={{fontWeight: "bold"}}>{currentUser?currentUser.name:nameLS}</p>
+                            <p className="my-auto ms-3 ">{currentUser?currentUser.email:emailLS}</p>
                             </div>                      
                       </div>
                       <div id="account-menu" className="list-group list-group-flush my-account-dropdown">
@@ -53,7 +55,7 @@ const MyAccount = () => {
         <div className='avatar-box d-flex flex-row'>
           <img className="rounded-circle" src="https://avatars.githubusercontent.com/u/84139131?v=4" alt="" height="150px" width="150px"/>
           <div className='name-box'>
-            <h2 className="my-auto  ">{currentUser?currentUser.name:'Learning Center System'}</h2>
+            <h2 className="my-auto  ">{currentUser?currentUser.name:nameLS}</h2>
             <span>Member since 2022</span>
           </div>
 
@@ -67,12 +69,12 @@ const MyAccount = () => {
                         <tbody>
                         <tr>
                               <td><b>Name</b></td>
-                              <td>{currentUser.name}</td>
+                              <td>{currentUser?currentUser.name:nameLS}</td>
                               <td><td className="btn btn-outline-success p-0">Change</td></td>
                           </tr> 
                           <tr>
                               <td><b>Email</b></td>
-                              <td>{currentUser.email}</td>
+                              <td>{currentUser?currentUser.email:emailLS}</td>
                               
                           </tr>
                           <tr>

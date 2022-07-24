@@ -54,4 +54,112 @@
        "lastAccess": "6/10/22 2:37",
    }
 ]
-export {locations, users};
+const students =[
+   {
+      "ID" : "1",
+      "Name" : "Nguyen Van Thanh",
+      "BirdDate" : "20/05/2004",
+      "Gender" : "Male",
+      "Email" : "Vanthanh@gmail.com",
+      "PhoneNumber": "0952445462",
+      "Note": ""
+   },
+   {
+      "ID" : "2",
+      "Name" : "Nguyen Van Thanh",
+      "BirdDate" : "20/05/2004",
+      "Gender" : "Male",
+      "Email" : "Vanthanh@gmail.com",
+      "PhoneNumber": "0952445462",
+      "Note": ""
+   },
+   {
+      "ID" : "3",
+      "Name" : "Nguyen Van Thanh",
+      "BirdDate" : "20/05/2004",
+      "Gender" : "Male",
+      "Email" : "Vanthanh@gmail.com",
+      "PhoneNumber": "0952445462",
+      "Note": ""
+   },
+   {
+      "ID" : "4",
+      "Name" : "Nguyen Van Thanh",
+      "BirdDate" : "20/05/2004",
+      "Gender" : "Male",
+      "Email" : "Vanthanh@gmail.com",
+      "PhoneNumber": "0952445462",
+      "Note": ""
+   },
+   {
+      "ID" : "5",
+      "Name" : "Nguyen Van Thanh",
+      "BirdDate" : "20/05/2004",
+      "Gender" : "Male",
+      "Email" : "Vanthanh@gmail.com",
+      "PhoneNumber": "0952445462",
+      "Note": ""
+   }
+]
+const classes = [
+   {"ClassID": "1",
+      "Course": "American Deaf Culture",
+      "Teacher": "Mr Vu",
+      "Location": "Bau Cat, Tan Binh, HCM",
+      "Class_title":"American Deaf Culture",
+      "Class_date": "Weekday",
+      "Class_time": "8am - 11am"
+},
+{"ClassID": "2",
+"Course": "American Deaf Culture",
+"Teacher": "Mr Vu",
+"Location": "Bau Cat, Tan Binh, HCM",
+"Class_title":"American Deaf Culture",
+"Class_date": "Weekdays",
+"Class_time": "8am - 11am"
+},
+{"ClassID": "3",
+      "Course": "American Deaf Culture",
+      "Teacher": "Mr Vu",
+      "Location": "Bau Cat, Tan Binh, HCM",
+      "Class_title":"American Deaf Culture",
+      "Class_date": "Weekdays",
+      "Class_time": "8am - 11am"
+},
+{"ClassID": "4",
+      "Course": "American Deaf Culture",
+      "Teacher": "Mr Vu",
+      "Location": "Bau Cat, Tan Binh, HCM",
+      "Class_title":"American Deaf Culture",
+      "Class_date": "Weekdays",
+      "Class_time": "8am - 11am"
+}
+]
+const newClass ={
+   "courses" : [{ "id": "1",
+                  "title": "American Deaf Culture"}
+                  ,{"id":"2",
+                  "title":"Basic Conversation Topics"},
+                  {"id": "3",
+                  "title":"Intermediate Conversation Topics"}],
+   "teachers":   [{ "id": "1",
+                  "name": "Ms Phuong"}
+                  ,{"id":"2",
+                  "name":"Mr Thanh"},
+                  {"id": "3",
+                  "name":"Mr Vu"}],
+   "locations":  [{ "id": "1",
+                  "address": "Bau cat - Tan Binh"}
+                  ,{"id":"2",
+                  "address":"Bien Hoa - Dong Nai"}]
+}
+const updateClassData={
+   "id": "1",
+   "course": "1",
+   "teacher": "2",
+   "location": "2",
+   "title": "American Deaf Culture",
+   "date": "Weekdays",
+   "time": "8am - 11am"
+}
+export {locations, users, students,classes, newClass,updateClassData};
