@@ -37,15 +37,6 @@ func CreateLocation (context *gin.Context)  {
 		})
 	panic(err.Error())
 	}
-	// db, err := sql.Open("mysql", "lcsdbuser:password123@tcp(localhost:3306)/lcsdb?timeout=3s")
-	// if err != nil {
-	// 	context.JSON(http.StatusBadRequest,gin.H{
-	// 		// CONNECT DATABASE FAILED
-	// 		"message":"DATA BASE CONNECT FAILED",
-	// 	})
-	// 	panic(err.Error())
-	// }
-	// fmt.Println(db)
 	db := DBconnect()
 	fmt.Println(dataLocation.LocationID)
 	checkLocation,err := db.Query("SELECT *  FROM location WHERE LocationID = ?",dataLocation.LocationID)
