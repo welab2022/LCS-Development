@@ -1,4 +1,5 @@
 import React from 'react'
+import Users from './User.css'
 
 const User = ({item}) => {
   return (
@@ -8,7 +9,9 @@ const User = ({item}) => {
         <td>{item.desc}</td>
         <td>{item.enable}</td>
         <td>{item.lastAccess}</td>
-        <td class="btn btn-outline-success p-0">Delete</td>
+        <div className='delete'>
+        <button className="delete-btn" type='submit'><span>x</span></button>
+        </div>
     </tr>
     
   )

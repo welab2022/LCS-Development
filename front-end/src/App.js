@@ -2,7 +2,7 @@ import { Routes ,Route,BrowserRouter } from 'react-router-dom';
 import LoginPage  from './components/pages/LoginPage';
 import MainPage  from './components/Layout/MainPage';
 import PrivateRoute from './components/Common/PrivateRoute';
-import  NotFound  from './components/Common/NotFound';
+import NotFound  from './components/Common/NotFound';
 import Locations from './components/locations/Locations';
 import Users from './components/users/Users';
 import ResetPassword from './components/pages/ResetPassword';
