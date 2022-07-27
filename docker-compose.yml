@@ -1,20 +1,29 @@
-version: "3.8"
+version: "3"
 services:
-  web:
-    build: ./front-end
-    ports:
-      - 3000:3000
-  api:
-    build: ./back-end
-    ports:
-      - 3001:3001
-    environment:
-      - DB_URL=
-  db:
-    image: mariadb:10.4 
-    ports:
-      - 3306:3306
+  php:
+    image: php:latest
     volumes:
-      - LCS-Development/data/db
+      - ./data/php:/var/www/myapp
+      - ./data/php/php.ini:/usr/local/etc/php/php.ini
+    depends_on:
+      - mariadb
+  mariadb:
+    image: mariadb:10.4
+    environment:
+      MYSQL_ROOT_PASSWORD: rootroot
+
+    volumes:
+      - mariadb-data:/var/lib/mysql
+      - "./data/db:/docker-entrypoint-initdb.d"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    ports:
+      - 3000:80
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=mariadb
+    depends_on:
+      - mariadb
 volumes:
-  LCS-Development:
+  mariadb-data:
