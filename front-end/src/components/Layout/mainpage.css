@@ -1,6 +1,4 @@
-
 .mainpage{
-    position: relative;
     width: 100%;
 
 }
@@ -11,24 +9,33 @@
     transition: 0.5s;
     overflow: hidden;
 }
+
 .menu.active{
     width: 0;
 }
+
 .main{
     position: absolute;
     width: calc(100% - 300px);
     left: 300px;
-    min-height: 100vh;
     transition: 0.5s;
+    height: 100%;
 }
 .main.active{
     width: 100%;
     left: 0;
+    height: 100%;
+}
+
+.main.active .d-flex{
+    margin-left: 100px;
+}
+
+.main.active .search-container{
+    width: 1100px;
+    transition: 0.1s;
 }
 
 .navbar{
     width: 100%;
-}
-.logout{
-    margin-left: 20px;
 }
