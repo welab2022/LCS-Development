@@ -1,7 +1,7 @@
 package model
 
 
- type Location struct {
+type Location struct {
 	LocationID int64
 	Address string
 	Status bool

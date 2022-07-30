@@ -33,4 +33,9 @@ func User(router *gin.Engine){
 	//Forgot password router
 	router.POST("/user/forgot-password",controller.GetEmailForgotPassword)
 	router.POST("resetpassword",controller.CheckEmailForgot)
+	//Students router
+	router.POST("/student",controller.CreateStudent)
+	router.GET("/students",controller.RealAllStudent)
+	router.GET("/student/:studentid",controller.GetStudent)
+	router.PUT("/student/:studentid",controller.UpdateStudent)
 }
