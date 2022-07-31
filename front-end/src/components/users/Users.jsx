@@ -6,7 +6,7 @@ const Users = () => {
   return (
     <MainPage>
             <div>
-                <h2 className='mt-5'>Locations</h2>
+                <h2 className='mt-5'>Users</h2>
                 <table className='table'>
                     <thead>
                         <tr>

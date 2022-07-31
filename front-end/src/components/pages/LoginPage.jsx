@@ -22,12 +22,12 @@ const LoginPage = () => {
   });
   useEffect(()=>{
     if(loginStatus == "succeeded"){
-      localStorage.setItem('username',currentUser.username)
+      console.log(currentUser)
+      localStorage.setItem('name',currentUser.name);
+      localStorage.setItem('email',currentUser.email)
       return navigate("/");
     }
-    if(loginStatus == "failed"){
-      alert('login failed')
-    }
+    
   },[loginStatus])
   const onSubmit = (data) => {
     dispatch(fetchLogin(JSON.stringify(data)));
@@ -35,6 +35,7 @@ const LoginPage = () => {
   return (
     <div className="container-sm  shadow p-5 " >
         <h2>LCS</h2>
+        {(loginStatus == "failed")?<p style={{color: "red"}}>Incorrect email or password!</p>:"" }
         <form onSubmit={handleSubmit(onSubmit)} >
             <div className="mb-3">
               <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
