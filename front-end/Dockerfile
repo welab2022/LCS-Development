@@ -1,13 +1,18 @@
+# We don't want to start from scratch.
+# That is why we tell node here to use the current node image as base.
 FROM node:14.16.0-alpine3.13
 
-RUN addgroup app && adduser -S -G app app
-USER app
 
+# set working directory
 WORKDIR /app
-COPY package*.json ./
-RUN npm install
-COPY . .
 
-EXPOSE 3000
+# install app dependencies
+COPY package.json ./
+COPY package-lock.json ./
 
+# EXPOSE 3000
+# add app
+COPY . ./
+
+# start app
 CMD ["npm", "start"]

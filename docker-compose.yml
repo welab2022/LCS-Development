@@ -1,29 +1,46 @@
-version: "3"
+version: '3.7'
+
 services:
-  php:
-    image: php:latest
-    volumes:
-      - ./data/php:/var/www/myapp
-      - ./data/php/php.ini:/usr/local/etc/php/php.ini
-    depends_on:
-      - mariadb
-  mariadb:
-    image: mariadb:10.4
-    environment:
-      MYSQL_ROOT_PASSWORD: rootroot
-
-    volumes:
-      - mariadb-data:/var/lib/mysql
-      - "./data/db:/docker-entrypoint-initdb.d"
-
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin:latest
+  frontend:
+    container_name: frontend 
+    build:
+      context: front-end
+      dockerfile: Dockerfile
+    # volumes:
+    #   - '.:/app'
+    #   - '/app/node_modules'
     ports:
-      - 3000:80
+      - 3001:3000
     environment:
-      - PMA_ARBITRARY=1
-      - PMA_HOST=mariadb
-    depends_on:
-      - mariadb
-volumes:
-  mariadb-data:
+      - CHOKIDAR_USEPOLLING=true
+
+  backend:
+    container_name: backend 
+    build:
+      context: back-end
+      dockerfile: Dockerfile
+    # volumes:
+    #   - '.:/app'
+    #   - '/app/node_modules'
+    ports:
+      - 8000:8000
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+
+  db:
+      image: mariadb
+      environment:
+          - MYSQL_ROOT_PASSWORD=rootroot
+          - MYSQL_DATABASE=lcsdb
+      volumes:
+          - ./database:/var/lib/mysql
+          - ./data/db:/docker-entrypoint-initdb.d
+  phpmyadmin:
+      image: phpmyadmin/phpmyadmin
+      container_name: phpmyadmin
+      environment:
+          - PMA_ARBITRARY=1
+          - PMA_HOST=db
+      restart: always
+      ports:
+          - 8080:80
