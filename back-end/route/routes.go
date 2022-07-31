@@ -19,13 +19,23 @@ func User(router *gin.Engine){
 		timeout.WithHandler(controller.CheckPassword),
 		timeout.WithResponse(ResponseTimeOut),
 	))
+	// User router
 	router.GET("/user/:email",controller.ReadUser)
 	router.DELETE("/user/:email",controller.DeleteUser)
 	router.PUT("/user/:email",controller.UpdateUserName)
 	router.PUT("/user/update/:email",controller.UpdateUserPassword)
 	router.POST("/user",controller.CreateUser)
+	//Location router
 	router.POST("/location",controller.CreateLocation)
-	router.GET("location",controller.ReadAllLocation)
+	router.GET("locations",controller.ReadAllLocation)
 	router.PUT("/location/edit/:locationid",controller.UpdateLocation)
 	router.DELETE("delete/:locationid",controller.DeleteLocation)
+	//Forgot password router
+	router.POST("/user/forgot-password",controller.GetEmailForgotPassword)
+	router.POST("resetpassword",controller.CheckEmailForgot)
+	//Students router
+	router.POST("/student",controller.CreateStudent)
+	router.GET("/students",controller.RealAllStudent)
+	router.GET("/student/:studentid",controller.GetStudent)
+	router.PUT("/student/:studentid",controller.UpdateStudent)
 }
