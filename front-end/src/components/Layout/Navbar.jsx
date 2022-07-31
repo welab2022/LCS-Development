@@ -1,17 +1,19 @@
 import React from 'react'
+import { useState } from 'react';
 import {  useSelector  } from 'react-redux';
 import { Link } from "react-router-dom";
+import './Navbar.css';
+
 const Navbar = () => {
     
     const currentUser = useSelector(state=>state.auth.currentUser);
-  
+    const username = localStorage.getItem("username");
     const handleToggle =()=>{
         document.getElementById('toggle').classList.toggle('show')
     }
-    const handleMenu = ()=>{
-        document.getElementById('main').classList.toggle('active');
-        document.getElementById('menu').classList.toggle('active');
-      
+    const handleMain = ()=>{
+      document.getElementById('main').classList.toggle('active');
+      document.getElementById('menu').classList.toggle('active');
     }
     const togleMyaccount = ()=>{
       document.getElementById('account-menu').classList.toggle('active-display');
@@ -21,18 +23,18 @@ const Navbar = () => {
       window.location.replace("/login");
     }
   return (
-    <nav className="navbar navbar-expand-sm bg-light">
+    <div className='navbar-expand-lg md-3'>
+    <nav className="navbar navbar-expand-sm">
                 <div className="container-fluid">
-                  <button className="btn btn-outline-success" onClick={handleMenu}>Menu</button>
-                  <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                  </button>
+                    <div className='button'>
+                  <button className="btn active" onClick={handleMain} ><i class="fas fa-bars"></i></button>
+                    </div>
                   <div className="collapse navbar-collapse" >
-                    <ul className="navbar-nav me-auto mb-2 mb-lg-0" onClick={handleToggle}>
+                    <ul className="navbar-menu" onClick={handleToggle} id='menu'>
                       
                       <li className="nav-item dropdown" >
                         <div className=" dropdown-toggle" >
-                         -----
+                            --------
                         </div>
                         <ul id='toggle' className="dropdown-menu" aria-labelledby="navbarDropdown">
                           <li><a className="dropdown-item" href="#">Students</a></li>
@@ -42,33 +44,32 @@ const Navbar = () => {
                       </li>
                       
                     </ul>
-                    <form className="d-flex  me-auto w-50" role="search">
-                        
-                      <input className="form-control w-50" type="search" placeholder="Search for Enrollments, Courses, Students, etc" aria-label="Search"/>
-                      <button className="btn btn-outline-success" type="submit">Search</button>
-                    </form>
+                    <div className='search-container lg-3'>
+                      <form action='#' method='get' className='search-bar'>
+                        <input type="text" placeholder="Search for Enrollments, Courses, Students, etc" />
+                        <button className="btn" type="submit"><i class="fas fa-search"></i></button>
+                    </form></div>
                     <div className="navbar-nav me-3 mb-2 mb-lg-0 mr-lg-3">
                         
                     </div>
-                    <div className="position-relative" style={{cursor: 'pointer'}} >
                       <div onClick={togleMyaccount} className="navbar-nav d-flex flex-row" id="account">
-                            <img className="rounded-circle" src="https://avatars.githubusercontent.com/u/84139131?v=4" alt="" height="40px" width="40px"/>
-                            <div  >
-                            <p className="my-auto ms-3 "  style={{fontWeight: "bold"}}>{currentUser?currentUser.name:'Learning Center System'}</p>
-                            <p className="my-auto ms-3 ">{currentUser?currentUser.email:'lcs@gmail.com'}</p>
-                            </div>                       
-                      </div>
-                      <div id="account-menu" className="list-group list-group-flush my-account-dropdown">
-                      <Link style={{ textDecoration: 'none' }} to="/myaccount"><span className="list-group-item p-3 my-account-dropdown-item">My account</span></Link>
-                        <span className="list-group-item p-3 my-account-dropdown-item" onClick={handleLogout}>Sign out</span>
+                        <li className='bell'><i class="fas fa-bell"></i></li>
+                          <div className='dropdown'>
+                            <img className="rounded-circle" style={{cursor: 'pointer'}} src="https://avatars.githubusercontent.com/u/84139131?v=4" alt="" height="55px" width="55px"/>
+                            <div className='dropdown-content' >
+                              <Link to="/myaccount"><a href='#' onClick={togleMyaccount}> My Account</a></Link>
+                              <a href='#' onClick={handleLogout}>Create a Team</a>
+                              <a href='#' onClick={handleLogout}>Log out</a>
+                            </div> </div>
+                            <div>
+                            <p className="my-auto ms-3 "  style={{fontWeight: "bold", textAlign:"center"}}>{currentUser?currentUser.name:'Learning Center System'}</p>
+                            <p className="my-auto ms-3 " style={{textAlign:"center"}}>{currentUser?currentUser.email:'LCS@gmail.com'}</p>
+                            </div>                   
                       </div>
                     </div>
-                      
-                    
-                  </div>
-                </div>
-            </nav>
+                   </div>
+</nav>
+</div>     
   )
 }
-
 export default Navbar

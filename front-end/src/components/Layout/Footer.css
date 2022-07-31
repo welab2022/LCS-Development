@@ -1,0 +1,26 @@
+.footer-content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    background: #e4e4e4;
+    background-color: #d9d9d9;
+    background-image: linear-gradient(315deg, #d9d9d9 0%, #f6f2f2 74%);
+    margin-top: 500px;
+}
+
+.footer-content h3
+{
+    font-size: 1.8rem;
+    font-weight: 400;
+    text-transform: capitalize;
+    line-height: 3rem;
+    padding-top: 10px;
+}
+
+.footer-content p{
+    max-width: 600px;
+    line-height: 27px;
+    font-size: 15px;
+}
